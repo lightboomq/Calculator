@@ -26,7 +26,7 @@ function useOperator(e){
     deleteStyleActiveBtn();
     e.target.classList.add('active');   
     operator = e.target.textContent;
-    if(!firstNum&&!secondNum){
+    if(!firstNum && !secondNum){
         firstNumFlag = true;
     }
     else{
@@ -36,7 +36,7 @@ function useOperator(e){
 }
 
 function getResultInOutput(){
-    if(firstNum&&secondNum){
+    if(firstNum && secondNum){
         switch (operator) {
             case '+':
                 output.textContent = firstNum + secondNum;
@@ -61,8 +61,7 @@ function getResultInOutput(){
 function getNumber(e){
     const target = e.target.textContent;
     if(['+','-','×','÷','=','÷','AC','C','%','%',].includes(target) || e.target.classList.contains('grid')) return;
-    console.log(true);
-    if ( output.textContent[0]==='0' ) output.textContent = '';
+    if (output.textContent[0] === '0') output.textContent = '';
     output.textContent += target;
     deleteStyleActiveBtn();
     
