@@ -46,9 +46,11 @@
   cursor: pointer;
 }
 .calculate .grid .operators {
+  transition: 0.3s;
   background-color: #FF9900;
 }
 .calculate .grid .buttons {
+  transition: 0.3s;
   background-color: #C9C9C9;
   color: black;
 }
@@ -62,6 +64,7 @@
   width: 100%;
 }
 .calculate .grid .active {
+  transition: 0.3s;
   background-color: white;
   color: #FF9900;
 }

@@ -44,9 +44,11 @@
             cursor: pointer;
         }
         .operators{
+            transition: 0.3s;
             background-color: #FF9900;
         }
         .buttons{
+            transition: 0.3s;
             background-color: #C9C9C9;
             color: black;
         }
@@ -60,6 +62,7 @@
             width: 100%;
         } 
         .active{
+            transition: 0.3s;
             background-color: white;
             color: #FF9900;
         }

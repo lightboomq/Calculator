@@ -1,43 +1,27 @@
 const output = document.querySelector('.output');
-const numbers = document.querySelector('.grid');
-const btnPlus = document.getElementById('plus');
-const btnMinus = document.getElementById('minus');
-const btnMultiply = document.getElementById('multiply');
-const btnDivision = document.getElementById('division');
-const btnEqual = document.getElementById('equal');
-const btnClearAll = document.getElementById('clearAll');
-const btnDeleteLastNum = document.getElementById('clearLastNum');
+const buttons = document.querySelector('.grid');
+const plus = document.getElementById('plus');
+const minus = document.getElementById('minus');
+const multiply = document.getElementById('multiply');
+const division = document.getElementById('division');
+const equal = document.getElementById('equal');
+const deleteAll = document.getElementById('clearAll');
+const deleteLastNum = document.getElementById('clearLastNum');
 
 let firstNum = '';
 let secondNum = '';
 let firstNumFlag = true;
 let operator;
 
-numbers.addEventListener('click',getNumber);
-btnPlus.addEventListener('click', useOperator);
-btnMinus.addEventListener('click', useOperator);
-btnMultiply.addEventListener('click', useOperator);
-btnDivision.addEventListener('click', useOperator);
-btnClearAll.addEventListener('click', clearAll);
-btnDeleteLastNum.addEventListener('click',deleteLastNum)
-btnEqual.addEventListener('click', useOperatorEqual)
+deleteAll.addEventListener('click', clearAll);
+deleteLastNum.addEventListener('click',deleteLastNumber);
+buttons.addEventListener('click',getNumber);
+plus.addEventListener('click', useOperator);
+minus.addEventListener('click', useOperator);
+multiply.addEventListener('click', useOperator);
+division.addEventListener('click', useOperator);
+equal.addEventListener('click', useOperatorEqual);
 
-
-
-function deleteLastNum(){
-    deleteStyleActiveBtn();
-    if(firstNum && !secondNum){
-        firstNumFlag = true;
-        output.textContent='0';
-        firstNum = '';
-        secondNum = '';
-    }
-    else if(firstNum && secondNum){
-        firstNumFlag = false;
-        output.textContent=firstNum;
-        secondNum = '';
-    }
-}
 function useOperator(e){
     deleteStyleActiveBtn();
     e.target.classList.add('active');   
@@ -76,7 +60,8 @@ function getResultInOutput(){
 
 function getNumber(e){
     const target = e.target.textContent;
-    if ( target==='+' || target==='-' || target==='×' || target==='÷' || target ==='=' || target ==='AC' || target ==='C' || target==='%' || e.target.classList.contains('grid')) return;
+    if(['+','-','×','÷','=','÷','AC','C','%','%',].includes(target) || e.target.classList.contains('grid')) return;
+    console.log(true);
     if ( output.textContent[0]==='0' ) output.textContent = '';
     output.textContent += target;
     deleteStyleActiveBtn();
@@ -111,4 +96,19 @@ function deleteStyleActiveBtn(){
 function useOperatorEqual(){
     deleteStyleActiveBtn();
     getResultInOutput();
+}
+
+function deleteLastNumber(){
+    deleteStyleActiveBtn();
+    if(firstNum && !secondNum){
+        firstNumFlag = true;
+        output.textContent='0';
+        firstNum = '';
+        secondNum = '';
+    }
+    else if(firstNum && secondNum){
+        firstNumFlag = false;
+        output.textContent=firstNum;
+        secondNum = '';
+    }
 }
