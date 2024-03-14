@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.calculate {
+  width: 330px;
+  margin-left: 50px;
+  box-shadow: 1px 1px 10px 0px;
+  background-color: black;
+  border-radius: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+.calculate .output {
+  display: flex;
+  width: 90%;
+  justify-content: end;
+  background-color: black;
+  color: white;
+  font-size: 80px;
+  padding: 40px 7px 10px 7px;
+  margin: auto;
+}
+.calculate .grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+}
+.calculate .grid .item {
+  all: unset;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: #3E3123;
+  color: white;
+  font-size: 25px;
+  font-weight: 900;
+  cursor: pointer;
+}
+.calculate .grid .operators {
+  background-color: #FF9900;
+}
+.calculate .grid .buttons {
+  background-color: #C9C9C9;
+  color: black;
+}
+.calculate .grid .buttons:active {
+  background-color: white;
+}
+.calculate .grid .item1 {
+  grid-column: 1/3;
+  justify-content: center;
+  border-radius: 40px;
+  width: 100%;
+}
+.calculate .grid .active {
+  background-color: white;
+  color: #FF9900;
+}
+.calculate .grid .equal:active {
+  background-color: white;
+  color: #FF9900;
+}/*# sourceMappingURL=style.css.map */
