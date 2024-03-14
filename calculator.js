@@ -20,10 +20,9 @@ btnMultiply.addEventListener('click', useOperator);
 btnDivision.addEventListener('click', useOperator);
 btnClearAll.addEventListener('click', clearAll);
 btnDeleteLastNum.addEventListener('click',deleteLastNum)
-btnEqual.addEventListener('click', ()=>{
-    deleteStyleActiveBtn();
-    getResultInOutput();
-});
+btnEqual.addEventListener('click', useOperatorEqual)
+
+
 
 function deleteLastNum(){
     deleteStyleActiveBtn();
@@ -109,3 +108,7 @@ function deleteStyleActiveBtn(){
         activeClass.classList.remove('active');
     };
 };
+function useOperatorEqual(){
+    deleteStyleActiveBtn();
+    getResultInOutput();
+}
