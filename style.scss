@@ -2,24 +2,23 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-weight: lighter;
 }
-
 .calculate{
    width: 330px;
    margin: auto;
    box-shadow: 1px 1px 10px 0px;
    background-color: black;
    border-radius: 10px;
-   padding-left:10px;
-   padding-right:10px;
-   padding-bottom:10px;
+   padding: 0 10px 10px 10px;
    .output{
     display: flex;
     width: 90%;
     justify-content: end;
+    align-items: end;
     background-color: black;
     color: white;
-    font-size: 80px;
+    font-size: 60px;
     padding: 40px 7px 10px 7px;
     margin: auto;
    }
@@ -40,18 +39,30 @@
             background-color: #3E3123;
             color: white;
             font-size: 25px;
-            font-weight: 900;
             cursor: pointer;
         }
+        
+        .numbers{
+            background-color: #303031;
+            transition: 3s;
+        }
+        .numbers:active{
+            background-color: #C9C9C9;
+        }
+        
         .operators{
             transition: 0.3s;
             background-color: #FF9900;
         }
-        .buttons{
+        .active-operator{
+            background-color: white;
+            color: #FF9900;
+        }
+        .reset{
             background-color: #C9C9C9;
             color: black;
         }
-        .buttons:active{
+        .reset:active{
             background-color: white;
         }
         .item1{
@@ -60,10 +71,7 @@
             border-radius: 40px;
             width: 100%;
         } 
-        .active{
-            background-color: white;
-            color: #FF9900;
-        }
+        
         .equal:active{
             background-color: white;
             color: #FF9900;

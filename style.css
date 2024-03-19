@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-weight: lighter;
 }
 
 .calculate {
@@ -10,17 +11,16 @@
   box-shadow: 1px 1px 10px 0px;
   background-color: black;
   border-radius: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 10px;
+  padding: 0 10px 10px 10px;
 }
 .calculate .output {
   display: flex;
   width: 90%;
   justify-content: end;
+  align-items: end;
   background-color: black;
   color: white;
-  font-size: 80px;
+  font-size: 60px;
   padding: 40px 7px 10px 7px;
   margin: auto;
 }
@@ -42,18 +42,28 @@
   background-color: #3E3123;
   color: white;
   font-size: 25px;
-  font-weight: 900;
   cursor: pointer;
+}
+.calculate .grid .numbers {
+  background-color: #303031;
+  transition: 3s;
+}
+.calculate .grid .numbers:active {
+  background-color: #C9C9C9;
 }
 .calculate .grid .operators {
   transition: 0.3s;
   background-color: #FF9900;
 }
-.calculate .grid .buttons {
+.calculate .grid .active-operator {
+  background-color: white;
+  color: #FF9900;
+}
+.calculate .grid .reset {
   background-color: #C9C9C9;
   color: black;
 }
-.calculate .grid .buttons:active {
+.calculate .grid .reset:active {
   background-color: white;
 }
 .calculate .grid .item1 {
@@ -61,10 +71,6 @@
   justify-content: center;
   border-radius: 40px;
   width: 100%;
-}
-.calculate .grid .active {
-  background-color: white;
-  color: #FF9900;
 }
 .calculate .grid .equal:active {
   background-color: white;
