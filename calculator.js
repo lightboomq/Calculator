@@ -1,4 +1,4 @@
-const output = document.querySelector('.output');
+const output = document.querySelector('.text');
 const numbers = document.querySelector('.grid');
 const precent = document.getElementById('precent');
 const plus = document.getElementById('plus');
@@ -21,25 +21,27 @@ equal.addEventListener('click', useOperatorEqual);
 
 let firstNum = '';
 let secondNum = '';
-let firstNumFlag = true;
 let operator = '';
+let firstNumFlag = true;
 
 function getNumber(e){
     if(e.target.value === '' || e.target.classList.contains('grid')) return;
     if(output.textContent[0] === '0') output.textContent = '';
+    
     toggleStyleActiveBtn();
     if(firstNumFlag){
         firstNum += e.target.value;
-        getBeautifulOutput(firstNum);
+        addSpacesToNumberInOutput(firstNum);
     }
     else{
         secondNum += e.target.value;     
-        getBeautifulOutput(secondNum);
+        addSpacesToNumberInOutput(secondNum);
     };
 };
 
-function getBeautifulOutput(number){
+function addSpacesToNumberInOutput(number){
     const numberString = String(number);
+    if (numberString.length > 9) return getResetInOutput();
     const numbers = [];
     let count = -1;
     for(let i = numberString.length-1; i >= 0; i--){
@@ -55,22 +57,23 @@ function getBeautifulOutput(number){
     };
     numbers.reverse();
     output.textContent = numbers.join('');
+    if(output.scrollHeight > 69) output.style.fontSize = `${parseInt(getComputedStyle(output).fontSize)-7}px`; 
 };
 
 function getResultInOutput(){
     if(firstNum && secondNum){
         switch (operator) {
             case '+': 
-                getBeautifulOutput(Number(firstNum) + Number(secondNum))
+                addSpacesToNumberInOutput(Number(firstNum) + Number(secondNum))
                 break;
             case '-':
-                getBeautifulOutput(Number(firstNum) - Number(secondNum))
+                addSpacesToNumberInOutput(Number(firstNum) - Number(secondNum))
                 break;
             case '×':
-                getBeautifulOutput(Number(firstNum) * Number(secondNum))
+                addSpacesToNumberInOutput(Number(firstNum) * Number(secondNum))
                 break;
             case '÷':
-                getBeautifulOutput(Number(firstNum) / Number(secondNum))
+                addSpacesToNumberInOutput(Number(firstNum) / Number(secondNum))
                 break;
         };
         firstNum = Number(output.textContent.replaceAll(' ',''));
@@ -98,6 +101,7 @@ function getResetInOutput(){
     secondNum = '';
     operator = '';
     firstNumFlag = true;
+    output.style.fontSize = '60px';
 };
 
 function getPrecentOfNumber(){

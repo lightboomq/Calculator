@@ -6,21 +6,20 @@
 }
 .calculate{
    width: 330px;
-   margin: auto;
+   margin-top: 50px;
    box-shadow: 1px 1px 10px 0px;
    background-color: black;
    border-radius: 10px;
    padding: 0 10px 10px 10px;
    .output{
     display: flex;
-    width: 90%;
     justify-content: end;
     align-items: end;
-    background-color: black;
+    width: 90%;
+    height: 141px;
+    margin: auto;
     color: white;
     font-size: 60px;
-    padding: 40px 7px 10px 7px;
-    margin: auto;
    }
     .grid{
         display: grid;
