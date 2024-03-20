@@ -44,11 +44,12 @@
             color: white;
             font-size: 25px;
             cursor: pointer;
+            user-select: none;
         }
         
         .numbers{
             background-color: #303031;
-            transition: 3s;
+            transition: 0.3s;
         }
         .numbers:active{
             background-color: #C9C9C9;
