@@ -26,8 +26,13 @@ let theFirstNumHasNoValue = true;
 
 function getNumber(e){
     if(e.target.value === '' || e.target.classList.contains('grid')) return;
-    if(output.textContent[0] === '0' && e.target.value === '0') return; 
-    if(output.textContent[0] === '0' && e.target.value === '.') firstNum = '0';
+    if(output.textContent[0] === '0' && e.target.value === '0' && theFirstNumHasNoValue) return; 
+    if(output.textContent[0] === '0' && e.target.value === '.' && theFirstNumHasNoValue){
+        firstNum = '0';
+    }
+    else if(output.textContent[0] === '0' && e.target.value === '.' && !theFirstNumHasNoValue){
+        secondNum = '0'
+    }
     toggleStyleActiveBtn();
     if(theFirstNumHasNoValue){
         firstNum += e.target.value;
@@ -76,7 +81,6 @@ function getResultInOutput(){
 
 function addSpacesToNumberInOutput(number){
     const numberString = String(number);
-    console.log(numberString);
     if(numberString === 'Infinity'){
         output.textContent = 0;
         return;
