@@ -10,9 +10,9 @@ const reset = document.getElementById('reset');
 const resetLastNum = document.getElementById('resetLastNum');
 
 reset.addEventListener('click', getResetInOutput);
-resetLastNum.addEventListener('click',resetLastNumber);
-precent.addEventListener('click',getPrecentOfNumber);
-numbers.addEventListener('click',getNumber);
+resetLastNum.addEventListener('click', resetLastNumber);
+precent.addEventListener('click', getPrecentOfNumber);
+numbers.addEventListener('click', getNumber);
 plus.addEventListener('click', useOperator);
 minus.addEventListener('click', useOperator);
 multiply.addEventListener('click', useOperator);
@@ -34,30 +34,23 @@ function getNumber(e){
         addSpacesToNumberInOutput(firstNum);
     }
     else{
+        output.style.fontSize = '60px';
         secondNum += e.target.value;     
         addSpacesToNumberInOutput(secondNum);
     };
 };
 
-function addSpacesToNumberInOutput(number){
-    const numberString = String(number);
-    if (numberString.length > 9) return getResetInOutput();
-    const numbers = [];
-    let count = -1;
-    for(let i = numberString.length-1; i >= 0; i--){
-        count++ 
-        if(numberString[i] === '.'){
-            count = -1;
-        }
-        if(4 % count === 1){
-            numbers.push(' ');
-            count = 0;
-        }
-        numbers.push(numberString[i]); 
-    };
-    numbers.reverse();
-    output.textContent = numbers.join('');
-    if(output.scrollHeight > 69) output.style.fontSize = `${parseInt(getComputedStyle(output).fontSize)-7}px`; 
+function useOperator(e){
+    toggleStyleActiveBtn();
+    e.target.classList.add('active-operator');   
+    operator = e.target.textContent;
+    if(!firstNum && !secondNum){
+        firstNumFlag = true;
+    }
+    else{
+        firstNumFlag = false;
+    }
+    return getResultInOutput();
 };
 
 function getResultInOutput(){
@@ -81,27 +74,25 @@ function getResultInOutput(){
     }  
 };
 
-function useOperator(e){
-    toggleStyleActiveBtn();
-    e.target.classList.add('active-operator');   
-    operator = e.target.textContent;
-    if(!firstNum && !secondNum){
-        firstNumFlag = true;
-    }
-    else{
-        firstNumFlag = false;
-    }
-    return getResultInOutput();
-};
-
-function getResetInOutput(){
-    toggleStyleActiveBtn();
-    output.textContent = 0;
-    firstNum = '';
-    secondNum = '';
-    operator = '';
-    firstNumFlag = true;
-    output.style.fontSize = '60px';
+function addSpacesToNumberInOutput(number){
+    const numberString = String(number);
+    if (numberString.length > 9) return getResetInOutput();
+    const numbers = [];
+    let count = -1;
+    for(let i = numberString.length-1; i >= 0; i--){
+        count++ 
+        if(numberString[i] === '.'){
+            count = -1;
+        }
+        if(4 % count === 1){
+            numbers.push(' ');
+            count = 0;
+        }
+        numbers.push(numberString[i]); 
+    };
+    numbers.reverse();
+    output.textContent = numbers.join('');
+    if(output.scrollHeight > 69) output.style.fontSize = `${parseInt(getComputedStyle(output).fontSize)-7}px`; 
 };
 
 function getPrecentOfNumber(){
@@ -120,6 +111,16 @@ function useOperatorEqual(){
     getResultInOutput();
 };
 
+function getResetInOutput(){
+    toggleStyleActiveBtn();
+    output.textContent = 0;
+    firstNum = '';
+    secondNum = '';
+    operator = '';
+    firstNumFlag = true;
+    output.style.fontSize = '60px';
+};
+
 function resetLastNumber(){
     toggleStyleActiveBtn();
     if(firstNum && !secondNum){
@@ -134,3 +135,4 @@ function resetLastNumber(){
         secondNum = '';
     };
 };
+
