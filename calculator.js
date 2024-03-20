@@ -76,7 +76,6 @@ function getResultInOutput(){
 
 function addSpacesToNumberInOutput(number){
     const numberString = String(number);
-    if (numberString.length > 9) return getResetInOutput();
     const numbers = [];
     let count = -1;
     for(let i = numberString.length-1; i >= 0; i--){
@@ -92,7 +91,16 @@ function addSpacesToNumberInOutput(number){
     };
     numbers.reverse();
     output.textContent = numbers.join('');
-    if(output.scrollHeight > 69) output.style.fontSize = `${parseInt(getComputedStyle(output).fontSize)-7}px`; 
+    getReducedSizeOfNumber();
+};
+
+function getReducedSizeOfNumber(){
+    let currentWidthOfNumber = parseInt(getComputedStyle(output).width);
+    let currentFontSizeOfNubmer = parseInt(getComputedStyle(output).fontSize);
+    while(currentWidthOfNumber > 270){
+        currentWidthOfNumber -= 7;
+        output.style.fontSize = `${currentFontSizeOfNubmer--}px`;
+    }; 
 };
 
 function getPrecentOfNumber(){

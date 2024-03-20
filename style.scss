@@ -7,6 +7,7 @@
 .calculate{
    width: 330px;
    margin-top: 50px;
+   margin: auto;
    box-shadow: 1px 1px 10px 0px;
    background-color: black;
    border-radius: 10px;
@@ -20,6 +21,10 @@
     margin: auto;
     color: white;
     font-size: 60px;
+    .text{
+        
+        white-space: nowrap;
+    }
    }
     .grid{
         display: grid;
