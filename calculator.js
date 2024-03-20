@@ -27,6 +27,10 @@ let theFirstNumHasNoValue = true;
 function getNumber(e){
     if(e.target.value === '' || e.target.classList.contains('grid')) return;
     if(output.textContent[0] === '0' && e.target.value === '0' && theFirstNumHasNoValue) return; 
+    
+    if(e.target.value === '.' && firstNum.includes('.') && theFirstNumHasNoValue) return;
+    if(e.target.value === '.' && secondNum.includes('.') && !theFirstNumHasNoValue) return;
+
     if(output.textContent[0] === '0' && e.target.value === '.' && theFirstNumHasNoValue){
         firstNum = '0';
     }
