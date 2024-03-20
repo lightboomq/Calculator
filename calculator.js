@@ -22,14 +22,14 @@ equal.addEventListener('click', useOperatorEqual);
 let firstNum = '';
 let secondNum = '';
 let operator = '';
-let firstNumFlag = true;
+let theFirstNumHasNoValue = true;
 
 function getNumber(e){
     if(e.target.value === '' || e.target.classList.contains('grid')) return;
-    if(output.textContent[0] === '0') output.textContent = '';
-    
+    if(output.textContent[0] === '0' && e.target.value === '0') return; 
+    if(output.textContent[0] === '0' && e.target.value === '.') firstNum = '0';
     toggleStyleActiveBtn();
-    if(firstNumFlag){
+    if(theFirstNumHasNoValue){
         firstNum += e.target.value;
         addSpacesToNumberInOutput(firstNum);
     }
@@ -45,11 +45,11 @@ function useOperator(e){
     e.target.classList.add('active-operator');   
     operator = e.target.textContent;
     if(!firstNum && !secondNum){
-        firstNumFlag = true;
+        theFirstNumHasNoValue = true;
     }
     else{
-        firstNumFlag = false;
-    }
+        theFirstNumHasNoValue = false;
+    };
     return getResultInOutput();
 };
 
@@ -76,6 +76,11 @@ function getResultInOutput(){
 
 function addSpacesToNumberInOutput(number){
     const numberString = String(number);
+    console.log(numberString);
+    if(numberString === 'Infinity'){
+        output.textContent = 0;
+        return;
+    } 
     const numbers = [];
     let count = -1;
     for(let i = numberString.length-1; i >= 0; i--){
@@ -95,24 +100,21 @@ function addSpacesToNumberInOutput(number){
 };
 
 function getReducedSizeOfNumber(){
-    let currentWidthOfNumber = parseInt(getComputedStyle(output).width);
-    let currentFontSizeOfNubmer = parseInt(getComputedStyle(output).fontSize);
+    let currentWidthOfNumber = Number.parseInt(getComputedStyle(output).width);
+    let currentFontSizeOfNubmer = Number.parseInt(getComputedStyle(output).fontSize);
     while(currentWidthOfNumber > 270){
-        currentWidthOfNumber -= 7;
+        currentWidthOfNumber = Number.parseInt(getComputedStyle(output).width);
         output.style.fontSize = `${currentFontSizeOfNubmer--}px`;
     }; 
 };
 
 function getPrecentOfNumber(){
-    if(!firstNumFlag){
-        output.textContent = Number(firstNum) * Number(secondNum) / 100;
-    }
+    if (theFirstNumHasNoValue) return;
+    output.textContent = Number(firstNum) * Number(secondNum) / 100;
 };
 function toggleStyleActiveBtn(){
     const activeClass = document.querySelector('.active-operator');
-    if(activeClass){
-        activeClass.classList.remove('active-operator');
-    };
+    if(activeClass) activeClass.classList.remove('active-operator');
 };
 function useOperatorEqual(){
     toggleStyleActiveBtn();
@@ -125,22 +127,21 @@ function getResetInOutput(){
     firstNum = '';
     secondNum = '';
     operator = '';
-    firstNumFlag = true;
+    theFirstNumHasNoValue = true;
     output.style.fontSize = '60px';
 };
 
 function resetLastNumber(){
     toggleStyleActiveBtn();
     if(firstNum && !secondNum){
-        firstNumFlag = true;
+        theFirstNumHasNoValue = true;
         output.textContent = '0';
         firstNum = '';
         secondNum = '';
     }
     else if(firstNum && secondNum){
-        firstNumFlag = false;
-        output.textContent = firstNum;
+        theFirstNumHasNoValue = false;
+        addSpacesToNumberInOutput(firstNum);
         secondNum = '';
     };
 };
-
